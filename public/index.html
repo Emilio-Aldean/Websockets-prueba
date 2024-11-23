@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WebSockets</title>
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+        <h1>Bienvenido a WebSockets</h1>
+        <p>Abre la consola para ver los mensajes enviados por el servidor.</p>
+        <div id="mensajes"></div>
+        <script>
+            console.log("Conexión iniciada.");
+
+            const socket = io.connect('http://localhost:3000');
+
+            socket.on('mensaje', (data) => {
+                console.log("Mensaje recibido:", data);
+
+                const mensajesDiv = document.getElementById('mensajes');
+                const nuevoMensaje = document.createElement('p');
+                nuevoMensaje.textContent = data;
+                mensajesDiv.appendChild(nuevoMensaje);
+            });
+        </script>
+    </body>
+</html>
+
